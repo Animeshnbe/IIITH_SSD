@@ -1,0 +1,2 @@
+SELECT wo.essn as "Manager ssn",count(*) as "Number of projects" from WORKS_ON wo where wo.essn in
+(SELECT d.mgr_ssn FROM PROJECT p join DEPARTMENT d on d.dnumber=p.dnum where Pname='ProductY') group by essn;

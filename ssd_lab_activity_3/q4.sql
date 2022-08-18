@@ -1,0 +1,2 @@
+SELECT d.dnumber,d.dname,count(*) as "Number of locations" from DEPARTMENT d join DEPT_LOCATIONS dl on d.dnumber=dl.dnumber where mgr_ssn in
+(SELECT essn FROM DEPENDENT e where sex='F' group by essn having count(*)>1) group by dl.dnumber;
