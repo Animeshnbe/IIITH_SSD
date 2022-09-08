@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>SSD Lab 5</title>
+        <link rel="stylesheet" href="./style.css">
+        <link rel="icon" href="./favicon.ico" type="image/x-icon">
+    </head>
+    <body>
+        <header>
+            <h1>
+                Student Records Dashboard
+            </h1>
+        </header>
+        <main>
+            <div>
+                <input type="text" placeholder="Roll No." id="rn">
+                <input type="text" placeholder="Student Name" id="sn">
+                <button class="add" onclick="add()">Add New</button>
+                <button class="del" onclick="del()">Delete Last Record</button>
+            </div>
+            <table id="studs">
+                <tr>
+                    <th>Roll No.</th>
+                    <th>Name</th>
+                </tr>
+                
+            </table>
+        </main>
+        <script>
+            var students = new Array();
+            function add(){
+                let sn=document.getElementById("sn").value;
+                let rn=document.getElementById("rn").value;
+                if (sn!="" || rn!=""){
+                    students.push({name:sn,roll:rn});
+                    let tab = document.getElementById("studs");
+                    var newElem = document.createElement("tr");
+                    newElem.innerHTML = "<td>"+rn+"</td><td>"+sn+"</td>";
+                    tab.appendChild(newElem);
+                }
+                document.getElementById("sn").value="";
+                document.getElementById("rn").value="";
+            }
+
+            function del(){
+                if (students.length>0){
+                    let tab = document.getElementById("studs");
+                    tab.removeChild(tab.lastChild);
+                    students.pop();
+                }
+            }
+        </script>
+    </body>
+</html>

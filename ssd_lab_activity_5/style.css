@@ -1,0 +1,107 @@
+.add {
+    background-color: rgb(98, 155, 13);
+}
+
+.del {
+    background-color: rgb(134, 9, 9);
+}
+
+.login {
+    background-color: #001f07;
+    margin-left: 45%;
+}
+
+input[type=text], input[type=password] {
+    width: 100%;
+    padding: 16px 8px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+
+input:focus {
+    border: 1px solid rgb(2, 69, 69);
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-image: linear-gradient(to left,#42275a, #734b6d);
+    background-size: cover;
+}
+
+button {
+    border-radius: 10px;
+    border-style: none;
+    box-sizing: border-box;
+    padding: 15px;
+    color: azure;
+    outline: none;
+    transition: color 100ms;
+    vertical-align: baseline;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+}
+
+button:hover {
+    background-color: #ff81b1;
+}
+
+.add,.del{
+    margin-top: 3%;
+    margin-right: 2%;
+}
+
+main{
+    position: relative;
+    display: grid;
+    column-gap: 50px;
+    align-content: center;
+    justify-content: center;
+    border-color: black;
+    border-width: 2px;
+    margin-left: 15%;
+    margin-right: 15%;
+}
+
+.error {
+    color:rgb(134, 9, 9);
+}
+
+table {
+    margin-top: 10%;
+    color: aquamarine;
+    border:1px solid aquamarine;
+}
+
+th {
+    border:1px solid aquamarine;
+}
+
+th, td {
+    padding: 15px;
+    text-align: center;
+}
+
+tr:nth-child(even) {
+    background-color: aquamarine;
+    color: #42275a;
+}
+
+h1{
+    margin-left: 10%;
+    color: #de8fd2;
+}
+
+.login-cont {
+    margin-top: 25px;
+    padding: 5%;
+    border-radius: 8px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    background-image: url("bodywall.jpg");
+}
