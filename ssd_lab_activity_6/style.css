@@ -22,10 +22,10 @@ body {
     padding: 5%;
 }
 
-table{
+/* table{
     border-style: none;
     border-collapse: collapse;
-}
+} */
 
 tr :not(.spl){
     padding: 2%;

@@ -2,6 +2,12 @@ document.addEventListener ("keydown", function (zEvent) {
     if (zEvent.ctrlKey  &&  zEvent.key === "m") {  
         var element = document.body;
         element.classList.toggle("dark-mode");
+        const drndp = document.querySelectorAll('.droptarget');
+
+        drndp.forEach(box => {
+            box.style.borderColor = 'white';
+        });
+
     }
 } );
 
@@ -22,7 +28,8 @@ function val(){
 
     alert("Name: "+document.myForm.mname.value+
             "\nEmail: "+document.myForm.gemail.value+
-            "\nLead: "+document.myForm.lead.value+
+            "\nUsername: "+document.myForm.uname.value+
+            "\nTeam Lead: "+document.myForm.lead.value+
             "\nMembers: "+memb.slice(0,-2));
     return true;
 }
