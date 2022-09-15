@@ -77,10 +77,12 @@ table {
     margin-top: 10%;
     color: aquamarine;
     border:1px solid aquamarine;
+    border-radius: 8px;;
 }
 
 th {
     border:1px solid aquamarine;
+    border-radius: 8px;
 }
 
 th, td {
