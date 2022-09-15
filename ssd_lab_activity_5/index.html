@@ -18,7 +18,7 @@
             <div class="login-cont">
                 <form onsubmit="return records()" method="GET" action="./studentRecords.html">
                     <label for="uname"><strong>Username</strong></label>
-                    <input type="text"  placeholder="Enter Name" name="uname" required>
+                    <input type="text"  placeholder="Enter Name" name="uname" required onfocusin="colchange()">
                     <label for="pwd"><strong>Password</strong></label>
                     <input type="password" placeholder="Enter Password" name="pwd" required>
                     <span class="error"></span>
@@ -30,6 +30,9 @@
             function records(){
                 //validation
                 return true;
+            }
+            function colchange(){
+                document.getElementByTagName("input").style.borderColor = "red";
             }
         </script>
     </body>

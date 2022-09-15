@@ -1,0 +1,46 @@
+.droptarget{
+    width: 15%;
+    min-height: 250px;
+    padding: 1%;
+    display: inline-block;
+    border: 1px solid black;
+}
+
+.members{
+    display: flex;
+}
+
+.members > * {
+    flex-shrink: 1;
+}
+
+.droptarget{
+    margin-right: 5%;
+}
+
+body {
+    padding: 5%;
+}
+
+table{
+    border-style: none;
+    border-collapse: collapse;
+}
+
+tr :not(.spl){
+    padding: 2%;
+    
+}
+
+td {
+    min-width: 250px;
+}
+
+input, select {
+    margin: 1%;
+}
+
+.dark-mode {
+    background-color: black;
+    color: white;
+}

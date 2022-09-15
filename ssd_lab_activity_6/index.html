@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>SSD Lab 6</title>
+        <link rel="stylesheet" href="./style.css">
+        <link rel="icon" href="./favicon.ico" type="image/x-icon">
+    </head>
+    <body>
+        <header>
+            <h1>
+                Team Form
+            </h1>
+        </header>
+        <div>
+            <form name="myForm" onsubmit="return val()" >
+                <table>
+                <tr><td><label for="mname"><strong>Manager Name</strong></label></td>
+                    <td><input type="text" name="mname" required></td></tr>
+                <tr><td><label for="gemail"><strong>Group Email</strong></label></td>
+                <td><input type="email" name="gemail" required></td></tr>
+                <tr><td><label for="uname"><strong>Server Username</strong></label></td>
+                <td><input type="text" name="uname" onkeyup="unameval(event)" required></td>
+                <td><span id="uerror"></span></td></tr>
+                <tr><td><label for="pwd"><strong>Server Password</strong></label></td>
+                <td><input type="password" name="pwd" onkeyup="confirmP()" required></td></tr>
+                <tr><td><label for="pwd"><strong>Confirm Password</strong></label></td>
+                <td><input type="password" name="cpwd" onkeyup="confirmP()" required></td>
+                <td><span id="message"></span></td></tr>
+                <tr><td><label for="lead"><strong>Team Lead</strong></label></td>
+                <td><select name="lead">
+                    <option> Thor </option>
+                    <option> Tony </option>
+                    <option> Steve </option>
+                    <option> Natasha </option>
+                    <option> Bruce </option>
+                    <option> Wanda </option>
+                <select></td></tr>
+                <tr class="spl"><td><label for="members"><strong>Team Members</strong></label></td>
+                <td><div class="members" name="members">
+                    <div class="droptarget" ondragover="doHandler(event)"
+                        ondrop="dpHandler(event)" style="width: 250px;">
+                        <p id="m1" ondragstart="dsHandler(event)"
+                            draggable="true">Carol Danvers</p>
+                        <p id="m2" ondragstart="dsHandler(event)"
+                            draggable="true">T'Challa</p>
+                        <p id="m3" ondragstart="dsHandler(event)"
+                            draggable="true">Dr Strange</p>
+                        <p id="m4" ondragstart="dsHandler(event)"
+                            draggable="true">Peter Parker</p>
+                        <p id="m5" ondragstart="dsHandler(event)"
+                            draggable="true">Rocket</p>
+                        <p id="m6" ondragstart="dsHandler(event)"
+                            draggable="true">Scott Lang</p>
+                        <p id="m7" ondragstart="dsHandler(event)"
+                            draggable="true">Loki</p>
+                    </div>
+                    <div class="droptarget sol" ondragover="doHandler(event)"
+                        ondrop="dpHandler(event)" style="width: 250px;"></div>
+                </div></td></tr>
+                <tr><td></td>
+                <td><button type="submit" class="sub">Submit</button></td></tr>
+                </table>
+            </form>
+        <!-- </div>
+        <div class="dragtarget">
+            
+        </div>
+        <div class="droptarget"> -->
+            
+        </div>
+    </body>
+    <script src="./script.js">
+        
+    </script>
+</html>

@@ -107,3 +107,7 @@ h1{
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     background-image: url("bodywall.jpg");
 }
+
+input:focus{
+    outline: none;
+}
