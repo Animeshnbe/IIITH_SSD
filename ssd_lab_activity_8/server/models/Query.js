@@ -25,11 +25,11 @@ const QuerySchema = new Schema({
     },
     ta_comment: {
         type: String,
-        required: true
+        required: false
     },
     std_comment: {
         type: String,
-        required: true
+        required: false
     },
     IsActive: {
         type: Boolean,

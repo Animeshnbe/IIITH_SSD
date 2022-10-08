@@ -41,10 +41,11 @@ button {
   border-radius: 10px;
   border-style: none;
   box-sizing: border-box;
-  padding: 15px;
+  padding: 10px;
   color: azure;
   outline: none;
-  margin: 5px;
+  margin-right: 5px;
+  margin-top: 5px;
   transition: color 100ms;
   vertical-align: baseline;
   user-select: none;
@@ -54,4 +55,18 @@ button {
   background-color: black;
   text-align: center;
   text-decoration: none;
+  height: max-content;
+}
+
+.query-item {
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 10px;
+  align-items: center;
+  border-top: #282c34 solid;
+  margin-bottom: 1%;
+}
+
+.text-center{
+  margin: 0 5%;
 }

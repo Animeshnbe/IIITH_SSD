@@ -64,7 +64,7 @@ function LoginForm(props) {
                 }
             }}>Login</button>
             <br/>
-            <p className='m-4'>Do not have an account ? <Link to='/signup'> Sign Up Here</Link> </p> 
+            <p className='m-4'>Do not have an account? <Link to='/signup'> Sign Up Here</Link> </p> 
     </div>);
 }
 

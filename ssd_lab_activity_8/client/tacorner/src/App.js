@@ -2,7 +2,7 @@ import './App.css';
 import SignUpForm from './components/SignUpForm';
 import LoginForm from './components/LoginForm';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Feedback from './components/Feedback';
+import { User, Feedback, AddQuery } from './components/Feedback';
 import Concerns from './components/Concerns';
 
 function App() {
@@ -12,7 +12,12 @@ function App() {
           <Route path="/" element={<LoginForm />}/>
           <Route path="signup" element={<SignUpForm />}/>
           <Route path="login" element={<LoginForm />}/>
-          <Route path="student" element={<Feedback />}/>
+          <Route path="student" element={<User />}>
+            <Route index element={<Feedback />}/>
+            <Route path='addQuery' element={<AddQuery />}/>
+            <Route path='*' element={<Feedback />}/>
+          </Route>
+          <Route path='addQuery' element={<AddQuery />}/>
           <Route path="tas" element={<Concerns />}/>
       </Routes>
     </BrowserRouter>

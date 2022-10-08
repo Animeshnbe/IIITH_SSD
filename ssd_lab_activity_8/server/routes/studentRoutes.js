@@ -11,7 +11,7 @@ const isAlive = (req, res, next) => {
 }
 
 
-router.use(isAlive)
+// router.use(isAlive)
 
 router.get('/', async (req, res) => {
     try {
@@ -36,7 +36,7 @@ router.get('/', async (req, res) => {
 
 
 router.post('/', async (req, res) => {
-    const { exam_name, course_name, question_number, ta_roll, comments } = req.body;
+    let { exam_name, course_name, question_number, ta_roll, comments } = req.body;
 
     if (!exam_name || !course_name || !question_number || !ta_roll) {
         return res.status(400).send("Required fields missing");
@@ -50,8 +50,8 @@ router.post('/', async (req, res) => {
     if (!comments)
         comments = "";
 
-    let std_roll = req.session.user.rollno
-    const newStd = new Query({ exam_name, course_name, question_number, ta_roll, std_roll, ta_comment:"", comments, isActive:true });
+    let std_roll = "202" //req.session.user.rollno
+    const newStd = new Query({ exam_name, course_name, question_number, ta_roll, std_roll, ta_comment:"", std_comment:comments, IsActive:true });
     const savedStd = await newStd.save();
 
     if (savedStd) {
