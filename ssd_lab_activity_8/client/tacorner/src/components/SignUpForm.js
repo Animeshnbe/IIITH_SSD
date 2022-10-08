@@ -1,29 +1,18 @@
-// import "../common.css";
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+import { Link,useNavigate } from 'react-router-dom';
+// import "../common.css"
 
 const BACKEND_URI = "http://localhost:3005/api/";
 
 // functional component
-function LoginForm(props) {
-    const [rollno, setRoll] = useState("");
-    const [password, setPassword] = useState("");
-    const [role, setRole] = useState("");
-
+function SignUpForm(props) {
+    let [rollno, setRoll] = useState("");
+    let [password, setPassword] = useState(""); 
+    let [role, setRole] = useState("");  
     const navigate = useNavigate();
-
-    const navigateToConcerns = () => {
-        navigate('/concerns');
-    }
-
-    const navigateToFeedback = () => {
-        navigate('/feedback');
-    }
-
     return (
     <div className="center-div">
-        <h1 className='text-center'>Login</h1>
+        <h1 className='text-center'>Sign Up</h1>
         <form className='form-group'>
             <label className='m-2 form-label'>Roll No : </label>
             <br/>
@@ -32,41 +21,35 @@ function LoginForm(props) {
             <label className='m-2 form-label'>Password : </label>
             <br/>
             <input className='m-2 form-control' type="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
-            <br/>
-            <label className='m-2 form-label'>Role : </label>
-            <br/>
+            <br/>   
             <select className='m-2 form-control' name="role">
                 <option value="TA" onChange={(e) => setRole(e.target.value)}>TA</option>
                 <option value="Student" onChange={(e) => setRole(e.target.value)}>Student</option>
             </select>
-            <br/>  
+            <br/>        
         </form>
         <button className='btn btn-primary position-relative start-50 translate-middle-x' onClick={async (e) =>  {
                 // send fetch (POST) request to server
                 const requestOptions = {
-                    credentials : 'include',
                     method : 'POST',
                     headers: {'Content-Type': 'application/json'},
-                    body : JSON.stringify({ rollno : rollno, password : password, role : role })
+                    body : JSON.stringify({ rollno : rollno, password : password, role: role })
                 };
 
-                var res = await fetch(BACKEND_URI + "login", requestOptions);
+                var res = await fetch(BACKEND_URI + "register", requestOptions);
                 alert((await res.json())["msg"]);
+                
+                if (role=="TA")
+                    navigate('/tas')
+                else
+                    navigate('/student')
                 setRoll("");
                 setPassword("");
-                setRole("")
-                if(res.status == 200) {
-                    sessionStorage.setItem("curr_roll", rollno);
-                    sessionStorage.setItem("curr_role", role);
-                    if (role=="TA")
-                        navigateToConcerns();
-                    else
-                        navigateToFeedback();
-                }
-            }}>Login</button>
+                setRole("");
+            }}>Sign Up</button>
             <br/>
-            <p className='m-4'>Do not have an account ? <Link to='/signup'> Sign Up Here</Link> </p> 
+            <p className='m-4'>Already Registered ? <Link to='/login'> Login Here</Link></p> 
     </div>);
 }
 
-export default LoginForm;
+export default SignUpForm;

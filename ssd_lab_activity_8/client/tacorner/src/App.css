@@ -36,3 +36,22 @@
     transform: rotate(360deg);
   }
 }
+
+button {
+  border-radius: 10px;
+  border-style: none;
+  box-sizing: border-box;
+  padding: 15px;
+  color: azure;
+  outline: none;
+  margin: 5px;
+  transition: color 100ms;
+  vertical-align: baseline;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  position: relative;
+  background-color: black;
+  text-align: center;
+  text-decoration: none;
+}

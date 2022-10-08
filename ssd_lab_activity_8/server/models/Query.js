@@ -11,7 +11,7 @@ const QuerySchema = new Schema({
         type: String,
         required: true
     },
-    question_num: {
+    question_number: {
         type: Number,
         required: true
     },

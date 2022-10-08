@@ -11,15 +11,12 @@ const app = express()
 const port = process.env.PORT || 3005
 
 // MIDDLEWARES
-app.use(cors({credentials: false, origin: true}))
+app.use(cors({credentials: true, origin: true}))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
 const loginRoutes = require('./routes/loginRoutes')
 const studentRoutes = require('./routes/studentRoutes')
-
-app.use('/api', loginRoutes)
-app.use('/queries', studentRoutes)
 
 mongoose.connect(process.env.DATABASE_CONNECTION_STRING, {
     useNewUrlParser: true,
@@ -29,11 +26,6 @@ mongoose.connect(process.env.DATABASE_CONNECTION_STRING, {
 const mongoDBstore = new MongoDBStore({
     uri: process.env.DATABASE_CONNECTION_STRING,
     collection: 'localSessions',
-})
-
-app.post('/regi', async (req, res) => {
-    console.log(req.body)
-    res.send("Hello World")
 })
 
 // SESSIONS HANDLER
@@ -55,7 +47,7 @@ app.use(
 
 // ROUTERS
 app.use('/api', loginRoutes)
-app.use('/std', studentRoutes)
+app.use('/queries', studentRoutes)
 
 // START SERVER
 app.listen(port, () => {
