@@ -85,7 +85,6 @@ function Concerns(props) {
                 <table className='ta-item' key={element._id}><tbody>
                     <tr><td><h4>Student Roll No: </h4></td><td><strong>{element.std_roll}</strong></td></tr>
                     <tr><td><h4>Course Name: </h4></td><td><strong>{element.course_name}</strong></td></tr>
-                    <tr><td><h4>Active: </h4></td><td><strong>{(element.IsActive==true)?1:0}</strong></td></tr>
                     <tr><td><h4>Question No: </h4></td><td><strong>{element.question_number}</strong></td></tr>
                     <tr><td><h4>Student's Comment: </h4></td><td><div className="textarea">{ (element.std_comment.length<31) ? element.std_comment : <> {isReadMore?element.std_comment:element.std_comment.substring(0,31)} <span style={{color:'blue'}} onClick={toggleMore}> {isReadMore ? "Show less" : "...Read More"}</span></>}</div></td></tr>
                     <tr><td><h4>Your Response: </h4></td><td><textarea rows="2" onChange={handleChange} value={element.ta_comment}/>
