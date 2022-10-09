@@ -34,12 +34,12 @@ function User() {
     }
 
     if(rollno == null) {
-        return (<p>
+        return (<div className='text-center'>
             Please Login First. 
             <button onClick={navigateToLogin} className='btn btn-primary'> 
                 Go To Login 
             </button>
-        </p>)
+        </div>)
     }
 
     function toggleBack(){
@@ -110,7 +110,7 @@ function AddQuery() {
     }
 
     useEffect(()=>{
-        fetch(BACKEND_URI + "api", requestOptions).then(response => {
+        fetch(BACKEND_URI + "api/", requestOptions).then(response => {
             if (response.status != 200){
                 return {}
             }
@@ -143,7 +143,7 @@ function AddQuery() {
         })
     }
 
-    return ({tas}?<div className='text-center'>TA's need to sign up</div>:
+    return ({tas}?
         <form id="newQuery" onSubmit={handleSubmit}>
             <table><tbody>
                 <tr>
@@ -176,7 +176,7 @@ function AddQuery() {
                     <td><button type="submit">Post</button></td>
                 </tr>
             </tbody></table>
-        </form>
+        </form>:<div className='text-center'>TA's need to sign up</div>
     );
 }
 

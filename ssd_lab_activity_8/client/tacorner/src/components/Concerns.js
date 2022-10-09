@@ -41,12 +41,12 @@ function Concerns(props) {
     })
 
     if(rollno == null) {
-        return (<p>
+        return (<div className='text-center'>
             Please Login First. 
             <button onClick={navigateToLogin} className='btn btn-primary'> 
                 Go To Login 
             </button>
-        </p>)
+        </div>)
     }
 
     const headerStyle = {
