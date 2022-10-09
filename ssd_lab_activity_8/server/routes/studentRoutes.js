@@ -51,7 +51,7 @@ router.post('/', async (req, res) => {
     if (!comments)
         comments = "";
 
-    let std_roll = "202" //req.session.user.rollno
+    let std_roll = req.session.user.rollno
     const newStd = new Query({ exam_name, course_name, question_number, ta_roll, std_roll, ta_comment:"", std_comment:comments, IsActive:true });
     const savedStd = await newStd.save();
 

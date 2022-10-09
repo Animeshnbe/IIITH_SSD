@@ -10,6 +10,7 @@ const requestOptions = {
 const rollno = sessionStorage.getItem("curr_roll");
 
 function User() {
+    const rollno = sessionStorage.getItem("curr_roll");
     const navigate = useNavigate();
 
     const navigateToLogin = () => {
@@ -94,7 +95,7 @@ function Feedback(props) {
                     </div>
                 ):<div className='text-center'>
                              No queries found!
-                         </div>}
+                </div>}
             </div>
     );
     
