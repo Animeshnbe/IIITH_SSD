@@ -28,11 +28,7 @@ function Concerns(props) {
     useEffect(()=>{
         fetch(BACKEND_URI + "queries/?type=ta&roll="+rollno, requestOptions).then(response => {
             if (response.status != 200){
-                return (
-                    <div className='text-center'>
-                        No queries found!
-                    </div>
-                );
+                return {}
             }
             return response.json()
         })
@@ -81,7 +77,7 @@ function Concerns(props) {
             }}>Logout</button>
         </header>
         <div className='text-center'>
-        {queries.map(element => 
+        {queries?queries.map(element => 
                 <table className='ta-item' key={element._id}><tbody>
                     <tr><td><h4>Student Roll No: </h4></td><td><strong>{element.std_roll}</strong></td></tr>
                     <tr><td><h4>Course Name: </h4></td><td><strong>{element.course_name}</strong></td></tr>
@@ -99,7 +95,9 @@ function Concerns(props) {
                             }
                         }}>POST</button>:<button style={{visibility:'hidden'}}>POST</button>}</td></tr>
                 </tbody></table>
-        )}
+        ):<div className='text-center'>
+                No queries found!
+            </div>}
         </div>
         
     </div>);

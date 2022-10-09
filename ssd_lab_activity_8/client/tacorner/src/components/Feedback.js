@@ -74,11 +74,7 @@ function Feedback(props) {
     useEffect(()=>{
         fetch(BACKEND_URI + "queries/?type=student&roll="+rollno, requestOptions).then(response => {
             if (response.status != 200){
-                return (
-                    <div className='text-center'>
-                        No queries found!
-                    </div>
-                );
+                return {}
             }
             return response.json()
         })
@@ -87,7 +83,7 @@ function Feedback(props) {
 
     return (
             <div className='text-center'>
-                {queries.map(element => 
+                {queries?queries.map(element => 
                     <div className='query-item' key={element._id}>
                         <h4>Exam Name: <strong>{element.exam_name}</strong></h4>
                         <h4 style={{textAlign:"end"}}>Course Name: <strong>{element.course_name}</strong></h4>
@@ -96,7 +92,9 @@ function Feedback(props) {
                         <h4>Your Comment: </h4><div className="textarea">{ (element.std_comment.length<31) ? element.std_comment : <> {isReadMore?element.std_comment:element.std_comment.substring(0,31)} <span style={{color:'blue'}} onClick={toggleMore}> {isReadMore ? "Show less" : "...Read More"}</span></>}</div>
                         <h4>TA's Response: </h4><div className="textarea">{ (element.ta_comment.length<31) ? element.ta_comment : <> {isReadMore?element.ta_comment:element.ta_comment.substring(0,31)} <span style={{color:'blue'}} onClick={toggleMore}> {isReadMore ? "Show less" : "...Read More"}</span></>}</div>
                     </div>
-                )}
+                ):<div className='text-center'>
+                             No queries found!
+                         </div>}
             </div>
     );
     
@@ -114,11 +112,7 @@ function AddQuery() {
     useEffect(()=>{
         fetch(BACKEND_URI + "api", requestOptions).then(response => {
             if (response.status != 200){
-                return (
-                    <div className='text-center'>
-                        No TAs found!
-                    </div>
-                );
+                return {}
             }
             return response.json()
         })
@@ -149,7 +143,7 @@ function AddQuery() {
         })
     }
 
-    return (
+    return ({tas}?<div className='text-center'>TA's need to sign up</div>:
         <form id="newQuery" onSubmit={handleSubmit}>
             <table><tbody>
                 <tr>

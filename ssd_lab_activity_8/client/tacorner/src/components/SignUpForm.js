@@ -22,9 +22,9 @@ function SignUpForm(props) {
             <br/>
             <input className='m-2 form-control' type="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
             <br/>   
-            <select className='m-2 form-control' name="role">
-                <option value="TA" onChange={(e) => setRole(e.target.value)}>TA</option>
-                <option value="Student" onChange={(e) => setRole(e.target.value)}>Student</option>
+            <select className='m-2 form-control' name="role" onChange={(e) => setRole(e.target.value)}>
+                <option value="TA">TA</option>
+                <option value="Student">Student</option>
             </select>
             <br/>        
         </form>
