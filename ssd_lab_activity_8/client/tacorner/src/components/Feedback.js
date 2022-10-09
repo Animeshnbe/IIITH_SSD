@@ -9,7 +9,6 @@ const requestOptions = {
 };
 const rollno = sessionStorage.getItem("curr_roll");
 
-console.log(rollno)
 function User() {
     const navigate = useNavigate();
 
@@ -143,10 +142,8 @@ function AddQuery() {
         })
         req.then(res => {
             console.log(res)
-            if (res.status == 200){
-                console.log("Meow")
+            if (res.status == 200)
                 navigateToDb();
-            }
             else
                 window.location.reload();
         })

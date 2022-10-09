@@ -19,9 +19,9 @@ router.get('/', async (req, res) => {
         const type = req.query.type
         let queries
         if (type=="ta")
-            queries = await Query.find({ ta_roll: roll}).sort({timestamp:1});
+            queries = await Query.find({ ta_roll: roll}).sort({IsActive:-1,updatedAt:-1});
         else
-            queries = await Query.find({ std_roll: roll });
+            queries = await Query.find({ std_roll: roll }).sort({updatedAt:-1});
 
         if(!queries.length){
             return res.status(204).json({ msg: "No queries exist..." })
@@ -74,7 +74,7 @@ router.put('/:id', async (req, res) => {
         return res.status(500).json({ msg: "Query doesn't exist..." });
     }
 
-    const std = await Query.findByIdAndUpdate(existStd.id, { ta_comment, isActive: false })
+    const std = await Query.findByIdAndUpdate(existStd.id, { ta_comment, IsActive: false })
 
     if (std) {
         return res.status(200).json({ data: "Posted successfully" })
