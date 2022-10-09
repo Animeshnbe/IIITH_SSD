@@ -40,7 +40,7 @@ function SignUpForm(props) {
                 alert((await res.json())["msg"]);
                 
                 if (role=="TA")
-                    navigate('/tas')
+                    navigate('/tas/queries')
                 else
                     navigate('/student')
                 setRoll("");

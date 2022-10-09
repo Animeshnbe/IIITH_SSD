@@ -83,6 +83,18 @@ table{
   width: 95%;
 }
 
-textarea{
-  columns: 60;
+textarea, .textarea{
+  width: 25em;
+  background-color: white;
+  border: 1px solid;
+}
+
+.textarea{
+  overflow-x: auto;
+  overflow-y: hidden;
+  min-height: 1.5em;
+}
+
+.translate-middle-x{
+  margin-left: 5%;
 }

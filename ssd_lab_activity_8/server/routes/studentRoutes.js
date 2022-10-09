@@ -19,7 +19,7 @@ router.get('/', async (req, res) => {
         const type = req.query.type
         let queries
         if (type=="ta")
-            queries = await Query.find({ ta_roll: roll, IsActive: true });
+            queries = await Query.find({ ta_roll: roll}).sort({timestamp:1});
         else
             queries = await Query.find({ std_roll: roll });
 
@@ -68,18 +68,19 @@ router.post('/', async (req, res) => {
 router.put('/:id', async (req, res) => {
     const { ta_comment } = req.body;
 
-    const existStd = await Query.findOne({ id:req.params.id });
+    console.log(ta_comment)
+    const existStd = await Query.findOne({ _id:req.params.id });
     if (!existStd) {
         return res.status(500).json({ msg: "Query doesn't exist..." });
     }
 
-    const std = await Query.findByIdAndUpdate(existStd.id, { ta_comment, isActive: false }, { new: true })
+    const std = await Query.findByIdAndUpdate(existStd.id, { ta_comment, isActive: false })
 
     if (std) {
         return res.status(200).json({ data: "Posted successfully" })
     }
     else {
-        return res.status(500).json({ msg: "Couldn't update student details" })
+        return res.status(500).json({ msg: "Couldn't update query" })
     }
 })
 

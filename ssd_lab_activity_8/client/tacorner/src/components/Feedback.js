@@ -9,6 +9,7 @@ const requestOptions = {
 };
 const rollno = sessionStorage.getItem("curr_roll");
 
+console.log(rollno)
 function User() {
     const navigate = useNavigate();
 
@@ -68,6 +69,8 @@ function User() {
 function Feedback(props) {
 
     const [ queries,setQueries ] = useState([])
+    const [ isReadMore, setReadMore ] = useState(false)
+    const toggleMore = () => setReadMore(!isReadMore);
 
     useEffect(()=>{
         fetch(BACKEND_URI + "queries/?type=student&roll="+rollno, requestOptions).then(response => {
@@ -91,8 +94,8 @@ function Feedback(props) {
                         <h4 style={{textAlign:"end"}}>Course Name: <strong>{element.course_name}</strong></h4>
                         <h4>Question No: <strong>{element.question_number}</strong></h4>
                         <h4 style={{textAlign:"end"}}>TA's Roll: <strong>{element.ta_roll}</strong></h4>
-                        <h4>Your Comment: </h4><textarea rows="5">{element.std_comment}</textarea>
-                        <h4>TA's Response: </h4><textarea rows="5">{element.ta_comment}</textarea>
+                        <h4>Your Comment: </h4><div className="textarea">{ (element.std_comment.length<31) ? element.std_comment : <> {isReadMore?element.std_comment:element.std_comment.substring(0,31)} <span style={{color:'blue'}} onClick={toggleMore}> {isReadMore ? "Show less" : "...Read More"}</span></>}</div>
+                        <h4>TA's Response: </h4><div className="textarea">{ (element.ta_comment.length<31) ? element.ta_comment : <> {isReadMore?element.ta_comment:element.ta_comment.substring(0,31)} <span style={{color:'blue'}} onClick={toggleMore}> {isReadMore ? "Show less" : "...Read More"}</span></>}</div>
                     </div>
                 )}
             </div>

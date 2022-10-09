@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { useEffect,useState } from 'react';
+import { useCallback, useEffect,useState } from 'react';
 
 const BACKEND_URI = "http://localhost:3005/";
 const requestOptions = {
@@ -16,8 +16,14 @@ function Concerns(props) {
         navigate('/login');
     }
 
+    const navigateToDb = () => {
+        navigate('/tas/queries');
+    }
+
     const rollno = sessionStorage.getItem("curr_roll");
     const [ queries,setQueries ] = useState([])
+    const [ isReadMore, setReadMore ] = useState(false)
+    const [ comment,setComment ] = useState("")
 
     useEffect(()=>{
         fetch(BACKEND_URI + "queries/?type=ta&roll="+rollno, requestOptions).then(response => {
@@ -32,6 +38,11 @@ function Concerns(props) {
         })
         .then(queries => setQueries(queries.data))
     }, [])
+
+    const handleChange = useCallback( e => {
+        const {name,value} = e.target;
+        setComment(value);
+    })
 
     if(rollno == null) {
         return (<p>
@@ -55,6 +66,8 @@ function Concerns(props) {
         gridColumnEnd: '6'
     }
 
+    const toggleMore = () => setReadMore(!isReadMore);
+
     return (
     <div>
         <header style={headerStyle}>
@@ -69,13 +82,23 @@ function Concerns(props) {
         </header>
         <div className='text-center'>
         {queries.map(element => 
-            <table className='ta-item' key={element._id}><tbody>
-                <tr><td><h4>Student Roll No: </h4></td><td><strong>{element.std_roll}</strong></td></tr>
-                <tr><td><h4>Course Name: </h4></td><td><strong>{element.course_name}</strong></td></tr>
-                <tr><td><h4>Question No: </h4></td><td><strong>{element.question_number}</strong></td></tr>
-                <tr><td><h4>Student's Comment: </h4></td><td><textarea rows="5">{element.std_comment}</textarea></td></tr>
-                <tr><td><h4>Your Response: </h4></td><td><textarea rows="5">{element.ta_comment}</textarea></td></tr>
-            </tbody></table>
+                <table className='ta-item' key={element._id}><tbody>
+                    <tr><td><h4>Student Roll No: </h4></td><td><strong>{element.std_roll}</strong></td></tr>
+                    <tr><td><h4>Course Name: </h4></td><td><strong>{element.course_name}</strong></td></tr>
+                    <tr><td><h4>Question No: </h4></td><td><strong>{element.question_number}</strong></td></tr>
+                    <tr><td><h4>Student's Comment: </h4></td><td><div className="textarea">{ (element.std_comment.length<31) ? element.std_comment : <> {isReadMore?element.std_comment:element.std_comment.substring(0,31)} <span style={{color:'blue'}} onClick={toggleMore}> {isReadMore ? "Show less" : "...Read More"}</span></>}</div></td></tr>
+                    <tr><td><h4>Your Response: </h4></td><td><textarea rows="2" onChange={handleChange}>{element.ta_comment.substring(0,31)}</textarea>
+                        </td><td>{(element.ta_comment.length==0) ? <button onClick={async (e) =>  {
+                            var res = await fetch(BACKEND_URI + "queries/"+element._id, {credentials : 'include',
+                                method : 'PUT',
+                                headers: {'Content-Type': 'application/json' },
+                                body:JSON.stringify({"ta_comment":comment})});
+                            if(res.status == 200){
+                                navigateToDb();
+                                e.target.style.visibility = 'hidden'
+                            }
+                        }}>POST</button>:<button style={{visibility:'hidden'}}>POST</button>}</td></tr>
+                </tbody></table>
         )}
         </div>
         

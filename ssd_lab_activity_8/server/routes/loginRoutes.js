@@ -37,6 +37,7 @@ router.post(`/login`, async (req, res) => {
         res.status(400).json({ msg: 'Something missing' })
     }
 
+    console.log(rollno, role);
     const user = await Users.findOne({ rollno: rollno, role: role }) // finding user in db
     if (!user) {
         return res.status(400).json({ msg: 'Invalid credentials' })
