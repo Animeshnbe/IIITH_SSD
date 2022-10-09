@@ -8,7 +8,7 @@ const BACKEND_URI = "http://localhost:3005/api/";
 function SignUpForm(props) {
     let [rollno, setRoll] = useState("");
     let [password, setPassword] = useState(""); 
-    let [role, setRole] = useState("");  
+    let [role, setRole] = useState("TA");  
     const navigate = useNavigate();
     return (
     <div className="center-div">
@@ -45,7 +45,7 @@ function SignUpForm(props) {
                     navigate('/student')
                 setRoll("");
                 setPassword("");
-                setRole("");
+                setRole("TA");
             }}>Sign Up</button>
             <br/>
             <p className='m-4'>Already Registered ? <Link to='/login'> Login Here</Link></p> 

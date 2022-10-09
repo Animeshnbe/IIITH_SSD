@@ -9,12 +9,12 @@ const BACKEND_URI = "http://localhost:3005/api/";
 function LoginForm(props) {
     const [rollno, setRoll] = useState("");
     const [password, setPassword] = useState("");
-    const [role, setRole] = useState("");
+    const [role, setRole] = useState("TA");
 
     const navigate = useNavigate();
 
     const navigateToConcerns = () => {
-        navigate('/tas');
+        navigate('/tas/queries');
     }
 
     const navigateToFeedback = () => {
@@ -53,7 +53,7 @@ function LoginForm(props) {
                 alert((await res.json())["msg"]);
                 setRoll("");
                 setPassword("");
-                setRole("")
+                setRole("TA")
                 if(res.status == 200) {
                     sessionStorage.setItem("curr_roll", rollno);
                     sessionStorage.setItem("curr_role", role);

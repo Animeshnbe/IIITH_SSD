@@ -36,6 +36,7 @@ router.get('/', async (req, res) => {
 
 
 router.post('/', async (req, res) => {
+    console.log(req.body)
     let { exam_name, course_name, question_number, ta_roll, comments } = req.body;
 
     if (!exam_name || !course_name || !question_number || !ta_roll) {
@@ -56,6 +57,7 @@ router.post('/', async (req, res) => {
 
     if (savedStd) {
         return res.status(200).json({ data: newStd })
+        // res.render('success', {roll:savedStd._id});
     }
     else {
         return res.status(500).json({ msg: "Couldn't save query details" })

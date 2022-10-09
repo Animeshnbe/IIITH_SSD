@@ -17,8 +17,7 @@ function App() {
             <Route path='addQuery' element={<AddQuery />}/>
             <Route path='*' element={<Feedback />}/>
           </Route>
-          <Route path='addQuery' element={<AddQuery />}/>
-          <Route path="tas" element={<Concerns />}/>
+          <Route path="tas/queries" element={<Concerns />}/>
       </Routes>
     </BrowserRouter>
   );

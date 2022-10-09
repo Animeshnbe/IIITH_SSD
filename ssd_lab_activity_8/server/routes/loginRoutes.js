@@ -37,9 +37,9 @@ router.post(`/login`, async (req, res) => {
         res.status(400).json({ msg: 'Something missing' })
     }
 
-    const user = await Users.findOne({ rollno: rollno }) // finding user in db
+    const user = await Users.findOne({ rollno: rollno, role: role }) // finding user in db
     if (!user) {
-        return res.status(400).json({ msg: 'User not found' })
+        return res.status(400).json({ msg: 'Invalid credentials' })
     }
 
     // comparing the password with the saved hash-password
@@ -77,5 +77,9 @@ router.get('/isAuth', async (req, res) => {
     }
 })
 
+router.get('/', async (req, res) => {
+    const tas = await Users.find({ role: "TA" })
+    res.status(200).json({ data: tas })
+})
 
 module.exports = router

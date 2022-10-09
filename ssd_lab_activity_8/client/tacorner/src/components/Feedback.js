@@ -41,6 +41,10 @@ function User() {
             </button>
         </p>)
     }
+
+    function toggleBack(){
+        
+    }
     return (
         <div>
             <header style={headerStyle}>
@@ -97,20 +101,87 @@ function Feedback(props) {
 }
 
 function AddQuery() {
+    // toggleBack()
+    const [ tas,setTas ] = useState([])
+
+    const navigate = useNavigate();
+    const navigateToDb = () => {
+        navigate('/student');
+    }
+
+    useEffect(()=>{
+        fetch(BACKEND_URI + "api", requestOptions).then(response => {
+            if (response.status != 200){
+                return (
+                    <div className='text-center'>
+                        No TAs found!
+                    </div>
+                );
+            }
+            return response.json()
+        })
+        .then(tas => {
+            setTas(tas.data)
+        })
+    }, [])
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        let data = {}
+        let obj = new FormData(e.target)
+        obj.forEach((val,key) => {
+            data[key] = val;
+        })
+        var req = fetch(BACKEND_URI + "queries/", {
+            credentials : 'include',
+            method : 'POST',
+            headers: {'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        })
+        req.then(res => {
+            console.log(res)
+            if (res.status == 200){
+                console.log("Meow")
+                navigateToDb();
+            }
+            else
+                window.location.reload();
+        })
+    }
+
     return (
-        <form method="POST" action={BACKEND_URI+"queries/"}>
-            <label for="ename"><strong>Exam Name: </strong></label>
-            <input type="text" placeholder="Which exam is it?" name="ename" required />
-            <label for="cname"><strong>Course Name: </strong></label>
-            <input type="text" placeholder="Which course is it?" name="cname" required />
-            <label for="qno"><strong>Question No.:</strong></label>
-            <input type="number" placeholder="Enter Question no." name="qno" required />
-            <label for="ta"><strong>TA's Name:</strong></label>
-            <input type="text" placeholder="Enter TA" name="ta" required />
-            <label for="comments"><strong>Comments:</strong></label>
-            <textarea name="comments" required />
-            <span class="error"></span>
-            <button type="submit">Post</button>
+        <form id="newQuery" onSubmit={handleSubmit}>
+            <table><tbody>
+                <tr>
+                    <td><label htmlFor="exam_name"><strong>Exam Name: </strong></label></td>
+                    <td><input type="text" placeholder="Which exam is it?" name="exam_name" required /></td>
+                </tr>
+                <tr>
+                    <td><label htmlFor="course_name"><strong>Course Name: </strong></label></td>
+                    <td><input type="text" placeholder="Which course is it?" name="course_name" required /></td>
+                </tr>
+                <tr>
+                    <td><label htmlFor="question_number"><strong>Question No.:</strong></label></td>
+                    <td><input type="number" placeholder="Enter Question no." name="question_number" required /></td>
+                </tr>
+                <tr>
+                    <td><label htmlFor="ta_roll"><strong>TA's Name:</strong></label></td>
+                    <td><select name="ta_roll" required>
+                            {tas.map(element => 
+                                <option value={element.rollno} key={element._id}>{element.rollno}</option>
+                            )}
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label htmlFor="comments"><strong>Comments:</strong></label></td>
+                    <td><textarea rows="5" name="comments" /></td>
+                </tr>
+                <tr>
+                    <td><span className="error"></span></td>
+                    <td><button type="submit">Post</button></td>
+                </tr>
+            </tbody></table>
         </form>
     );
 }

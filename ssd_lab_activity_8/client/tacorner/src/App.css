@@ -67,6 +67,22 @@ button {
   margin-bottom: 1%;
 }
 
-.text-center{
+.text-center, form{
   margin: 0 5%;
+}
+
+table{
+  width: 50%;
+  margin: 10% auto;
+}
+
+.ta-item {
+  border-top: #282c34 solid;
+  margin-bottom: 1%;
+  margin: 5% auto;
+  width: 95%;
+}
+
+textarea{
+  columns: 60;
 }
