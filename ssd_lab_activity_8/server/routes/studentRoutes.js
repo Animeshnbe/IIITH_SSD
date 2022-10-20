@@ -11,7 +11,7 @@ const isAlive = (req, res, next) => {
 }
 
 
-// router.use(isAlive)
+router.use(isAlive)
 
 router.get('/', async (req, res) => {
     try {

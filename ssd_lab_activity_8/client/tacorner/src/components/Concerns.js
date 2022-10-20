@@ -36,8 +36,9 @@ function Concerns(props) {
     }, [])
 
     const handleChange = useCallback( e => {
-        const {name,value} = e.target;
-        setComment(value);
+        // const value = e.target.value;
+        // alert()
+        setComment(e.target.value);
     })
 
     if(rollno == null) {
@@ -83,7 +84,7 @@ function Concerns(props) {
                     <tr><td><h4>Course Name: </h4></td><td><strong>{element.course_name}</strong></td></tr>
                     <tr><td><h4>Question No: </h4></td><td><strong>{element.question_number}</strong></td></tr>
                     <tr><td><h4>Student's Comment: </h4></td><td><div className="textarea">{ (element.std_comment.length<31) ? element.std_comment : <> {isReadMore?element.std_comment:element.std_comment.substring(0,31)} <span style={{color:'blue'}} onClick={toggleMore}> {isReadMore ? "Show less" : "...Read More"}</span></>}</div></td></tr>
-                    <tr><td><h4>Your Response: </h4></td><td><textarea rows="2" onChange={handleChange} value={element.ta_comment}/>
+                    <tr><td><h4>Your Response: </h4></td><td><textarea rows="2" onChange={handleChange}/>
                         </td><td>{(element.ta_comment.length==0) ? <button onClick={async (e) =>  {
                             var res = await fetch(BACKEND_URI + "queries/"+element._id, {credentials : 'include',
                                 method : 'PUT',

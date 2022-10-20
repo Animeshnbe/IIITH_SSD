@@ -80,7 +80,7 @@ function Feedback(props) {
             return response.json()
         })
         .then(queries => setQueries(queries.data))
-    }, [])
+    }, [queries])
 
     return (
             <div className='text-center'>
