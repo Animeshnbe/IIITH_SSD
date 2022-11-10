@@ -31,18 +31,18 @@ whole = np.array(whole, dtype="int")
 
 ROW = 42
 COL = 25
-def isSafe(i, j, visited):
-    return (i >= 0 and i < ROW and j >= 0 and j < COL and not visited[i][j] and mat[i][j]>0)
+def is_valid(i, j, visited):
+    return (i>=0 and i<ROW and j>=0 and j<COL and not visited[i][j] and mat[i][j]>0)
  
 def DFS(i, j, visited):
-    rowNbr = [-1, -1, -1,  0, 0,  1, 1, 1]
-    colNbr = [-1,  0,  1, -1, 1, -1, 0, 1]
+    rowNum = [-1, 0, 0, 1]
+    colNum = [0, -1, 1, 0]
 
     visited[i][j] = True
 
-    for k in range(8):
-        if isSafe(i + rowNbr[k], j + colNbr[k], visited):
-            DFS(i + rowNbr[k], j + colNbr[k], visited)
+    for k in range(4):
+        if is_valid(i + rowNum[k], j + colNum[k], visited):
+            DFS(i + rowNum[k], j + colNum[k], visited)
 
 tl = []
 def countIslands(mat):
@@ -83,7 +83,7 @@ for i,mat in enumerate(whole[1:]):
                         j+=1
                     stridelen = stridestart+footlen-j
                 elif tl[0][0]+footlen>=ROW:
-                    stridelen = tl[0][0]+footlen-stridestart
+                    stridelen = tl[0][0]-stridestart
                 else:
                     stridelen = abs(tl[0][0]-stridestart)
                 print("Stride length =",stridelen)
