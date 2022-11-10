@@ -2,27 +2,75 @@ import csv
 import numpy as np
 from datetime import datetime as dt
 
-with open('mat.txt','r')as file:
-    f=csv.reader(file, delimiter="\t")
+
+#mat3 is the topmost placed mat
+with open('mat.txt','r') as file1, open("mat2.txt") as file2, open("mat3.txt") as file3:
+    f1=csv.reader(file1, delimiter="\t")
+    f2=csv.reader(file2, delimiter="\t")
+    f3=csv.reader(file3, delimiter="\t")
     whole = []
+    sub_whole = []
     mat = []
     ts = []
     rnum=0
     t="16:00:21.217"
-    for row in f:
-#         print(row[:26])
+    for row in f1:
         if any(x.strip() for x in row):
             if rnum == 21:
                 t = row[0]
             mat.append(row[1:26])
             rnum+=1
         elif len(mat)>0:
+            mat = mat+[[0 for i in range(25)] for j in range(42)]
+            mat = mat+[[0 for i in range(25)] for j in range(42)]
+            whole.append(mat)
+            ts.append(t)
+            rnum = 0
+            mat = []
+
+    if len(mat)>0:
+        mat = mat+[[0 for i in range(25)] for j in range(42)]
+        mat = mat+[[0 for i in range(25)] for j in range(42)]
+        whole.append(mat)
+        ts.append(t)
+
+    for row in f2:
+        if any(x.strip() for x in row):
+            if rnum == 21:
+                t = row[0]
+            mat.append(row[1:26])
+            rnum+=1
+        elif len(mat)>0:
+            mat = [[0 for i in range(25)] for j in range(42)]+mat
+            mat = mat+[[0 for i in range(25)] for j in range(42)]
             whole.append(mat)
             ts.append(t)
             rnum = 0
             mat = []
             
     if len(mat)>0:
+        mat = [[0 for i in range(25)] for j in range(42)]+mat
+        mat = mat+[[0 for i in range(25)] for j in range(42)]
+        whole.append(mat)
+        ts.append(t)
+
+    for row in f3:
+        if any(x.strip() for x in row):
+            if rnum == 21:
+                t = row[0]
+            mat.append(row[1:26])
+            rnum+=1
+        elif len(mat)>0:
+            mat = [[0 for i in range(25)] for j in range(42)]+mat
+            mat = [[0 for i in range(25)] for j in range(42)]+mat
+            whole.append(mat)
+            ts.append(t)
+            rnum = 0
+            mat = []
+            
+    if len(mat)>0:
+        mat = [[0 for i in range(25)] for j in range(42)]+mat
+        mat = [[0 for i in range(25)] for j in range(42)]+mat
         whole.append(mat)
         ts.append(t)
 
@@ -91,7 +139,7 @@ for i,mat in enumerate(whole[1:]):
                 tend = dt.strptime(ts[i+1],"%H:%M:%S.%f")
                 vel = '{:.2f}'.format(stridelen/(tend-tstart).seconds)
                 print(f"Velocity = {vel} units per sec")
-                cad = '{:.2f}'.format(180/(tend-tstart).seconds)
+                cad = '{:.2f}'.format(3/(tend-tstart).seconds)
                 print(f"Cadence = {cad} units per sec")
                 stridestart = tl[0][0]
                 tstart = tend
