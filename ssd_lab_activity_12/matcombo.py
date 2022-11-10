@@ -9,7 +9,6 @@ with open('mat.txt','r') as file1, open("mat2.txt") as file2, open("mat3.txt") a
     f2=csv.reader(file2, delimiter="\t")
     f3=csv.reader(file3, delimiter="\t")
     whole = []
-    sub_whole = []
     mat = []
     ts = []
     rnum=0
@@ -33,6 +32,8 @@ with open('mat.txt','r') as file1, open("mat2.txt") as file2, open("mat3.txt") a
         mat = mat+[[0 for i in range(25)] for j in range(42)]
         whole.append(mat)
         ts.append(t)
+        rnum = 0
+        mat = []
 
     for row in f2:
         if any(x.strip() for x in row):
@@ -53,6 +54,8 @@ with open('mat.txt','r') as file1, open("mat2.txt") as file2, open("mat3.txt") a
         mat = mat+[[0 for i in range(25)] for j in range(42)]
         whole.append(mat)
         ts.append(t)
+        rnum = 0
+        mat = []
 
     for row in f3:
         if any(x.strip() for x in row):
