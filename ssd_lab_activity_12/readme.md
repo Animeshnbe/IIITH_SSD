@@ -1,10 +1,9 @@
-########### lab activity 13 ############3
+## SSD Lab Activity 12, Saturday 5th November ##
 
-ANIMESH DAS 2022201027
+__ ANIMESH DAS 2022201027 ___
 
+Q1: stridecalc.py, file is read from mat.txt in the same project folder. The list of matrices (numpy arrays) are saved and iterated over to check for non-zero regions (foot)
 
-For flask app, pip install the libraries flask-login and flask-sqlalchemy
-Only one python file is present --> server.py and one templates folder
-Please run the server with python3 server.py
+The stridelength is calculated for the same foot (left foot in the given example file). We assume that the walking trajectory is vertical.
 
-After signup and login, hit requests with POSTMAN to get json responses
+Q2:
